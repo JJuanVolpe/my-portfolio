@@ -2735,5 +2735,18 @@ input, select, textarea {
 	height: 4px;
 	width: 100px;
 	background-color: #a10f0f;
+	border-radius: 2px;
 }
 
+@media screen and (max-width: 990px) {
+	.skills-container{
+		grid-template-columns: repeat(2, 1fr);
+		padding: 2rem 50px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.skills-container{
+		grid-template-columns:1fr;		
+	}
+}
