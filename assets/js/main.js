@@ -119,5 +119,44 @@
 					target: $body,
 					visibleClass: 'header-visible'
 				});
+	
+	//Get mailto field and copy by attr.
 
+	$(document).ready(function() {
+
+		// Add class to mailto link
+		// Needed to separate the disabling of the default action AND copy email to clipboard
+		$('a[href^=mailto]').addClass('mailto-link');
+	
+		var mailto = $('.mailto-link');
+		
+		// Disable opening your email client. yuk.
+		$('a[href^=mailto]').click(function() {
+			return false; 
+		})
+		
+		// On click, get href and remove 'mailto:' from value
+		// Store email/phone in a variable.
+		mailto.click(function() {
+			var href = $(this).attr('href');
+			var text = href.replace('mailto:', '');
+			console.log(text);
+			copyToClipboard(text);
+			$('.mailto-message').empty();
+		});
+		
+	});
+	
+	// Grabbed this from Stack Overflow.
+	// Copies the email variable to clipboard
+	function copyToClipboard(text) {
+		var dummy = document.createElement("input");
+		document.body.appendChild(dummy);
+		dummy.setAttribute('value', text);
+		dummy.select();
+		document.execCommand('copy');
+		document.body.removeChild(dummy);
+	}
+
+				
 })(jQuery);
